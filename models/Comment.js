@@ -7,7 +7,3 @@ var commentSchema = new Schema({
     body : String
 });
 mongoose.model('Comment', commentSchema);
-
-module.exports = {
-    Comment: commentSchema
-};
