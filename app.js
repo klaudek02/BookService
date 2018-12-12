@@ -17,6 +17,7 @@ require('./services/passport');
 require('./services/mongoConnect');
 
 require('./routes/googleAuth')(app);
+var indexRouter = require('./routes/index');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
