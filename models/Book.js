@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var {Schema} = mongoose;
+var Schema = mongoose.Schema;
 
 var bookSchema = new Schema({
     bookName : String,
@@ -8,4 +8,4 @@ var bookSchema = new Schema({
 });
 
 
-mongoose.model('Book', bookSchema);
+module.exports=mongoose.model('Book', bookSchema);

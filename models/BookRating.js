@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var {Schema} = mongoose;
+var Schema = mongoose.Schema;
 
 var bookRatingSchema = new Schema({
     bookId: String,

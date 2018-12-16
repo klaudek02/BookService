@@ -18,6 +18,13 @@ require('./services/mongoConnect');
 
 require('./routes/googleAuth')(app);
 var indexRouter = require('./routes/index');
+var userRouter = require('./routes/user.route');
+var bookRouter=require('./routes/book.route')
+var bookRatingRouter=require('./routes/bookRating.route')
+var newsRouter=require('./routes/news.route')
+var commentRouter=require('./routes/comment.route')
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -29,7 +36,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-//app.use('/users', usersRouter);
+app.use('/user',userRouter);
+app.use('/book',bookRouter);
+app.use('/bookRating',bookRatingRouter);
+app.use('/news',newsRouter);
+app.use('/comment',commentRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
