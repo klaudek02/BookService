@@ -10,5 +10,6 @@ var newsSchema = new Schema({
 });
 
 
-mongoose.model('News', newsSchema);
+
 module.exports = mongoose.model('News', newsSchema);
+
