@@ -6,10 +6,9 @@ exports.book_create = function (req, res,next) {
         {
             bookName : req.params.bookName,
             genre : req.params.genre,
-            premiereDate: req.params.premiereDate
+            premiereDate: req.params.premiereDat
         }
     );
-
     book.save(function (err) {
         if (err) {
             return next(err);
