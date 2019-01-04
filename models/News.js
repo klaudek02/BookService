@@ -6,10 +6,8 @@ var newsSchema = new Schema({
     topic: String,
     description:String,
     postedDate : {type: Date, default: Date.now},
-    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
+    comments: [{type: Object}]
 });
-
-
 
 module.exports = mongoose.model('News', newsSchema);
 

@@ -6,7 +6,7 @@ exports.book_create = function (req, res,next) {
         {
             bookName : req.params.bookName,
             genre : req.params.genre,
-            premiereDate: req.params.premiereDat
+            premiereDate: req.params.premiereDate
         }
     );
     book.save(function (err) {
@@ -40,7 +40,6 @@ exports.book_delete = function (req, res,next) {
     })
 
 };
-
 
 exports.book_readAll = function (req, res,next) {
     Book.find({}, function (err, book) {
