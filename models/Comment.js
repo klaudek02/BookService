@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var commentSchema = new Schema({
-    userId: String,
+    userId: {type:String, required:true},
     postedDate : {type: Date, default: Date.now},
     body : String
 });

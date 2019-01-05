@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var bookSchema = new Schema({
-    bookName : String,
-    genre : String,
+    bookName : {type:String, required:true},
+    genre : {type:String, required:true},
     premiereDate: {type: Date, default: Date.now}
 });
 

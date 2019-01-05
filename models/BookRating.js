@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var bookRatingSchema = new Schema({
-    bookId: String,
-    bookRating : {type: Number, min:1,max:5},
+    bookId: {type:String, required:true},
+    bookRating : {type: Number, min:1,max:5, required:true},
     ratingDate : {type: Date, default: Date.now}
 });
 

@@ -47,10 +47,16 @@ exports.news_add_comment = function(req,res,next){
         body : "body"
         }
     )
+   console.log(req.user['userType']);
+    if(req.user['ban'] == false){
     News.update({_id:req.body._id}, {$push: {comments: comment} }, function (err, news) {
         if (err) return next(err);
         res.send('News udpated.');
-});
+    })}
+    else
+        {
+            res.send('You are banned');
+        }
 };
 /*
   User.findByIdAndUpdate(req.params.id, {username: req.params.username}, function (err, user) {

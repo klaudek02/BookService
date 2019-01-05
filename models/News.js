@@ -3,8 +3,8 @@ var Schema = mongoose.Schema;
 
 var newsSchema = new Schema({
     userId : String,
-    topic: String,
-    description:String,
+    topic: {type:String, required:true},
+    description:{type:String, required:true},
     postedDate : {type: Date, default: Date.now},
     comments: [{type: Object}]
 });
