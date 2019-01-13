@@ -1,5 +1,6 @@
 const News = require('../models/News');
 const Comment = require('../models/Comment');
+const User = require('../models/User');
 exports.news_create = function (req, res,next) {
     let news = new News(
         {
@@ -47,8 +48,12 @@ exports.news_add_comment = function(req,res,next){
         body : "body"
         }
     )
-   console.log(req.user['userType']);
-    if(req.user['ban'] == false){
+
+/*
+    var query = User.findOne({'id':req.body._id});
+    query.select('ban');
+    console.log(query);
+    if(query['ban']==='false' || query['ban']===  false ){
     News.update({_id:req.body._id}, {$push: {comments: comment} }, function (err, news) {
         if (err) return next(err);
         res.send('News udpated.');
@@ -56,8 +61,34 @@ exports.news_add_comment = function(req,res,next){
     else
         {
             res.send('You are banned');
-        }
-};
+       }*/
+    User
+        .findOne({ _id:req.body._id })
+        //.select({'ban':false})
+        .exec(function (err, user) {
+            if (err) return new Error('something bad happened');
+                if(!user.ban){
+                    News.update({_id: req.body._id}, {$push: {comments: comment}}, function (err, news) {
+                        if (err) return next(err);
+                        res.send('News udpated.');
+                    } )
+
+                }
+                else{
+                    res.send("You are banned.")
+                  }}
+        )};
+
+
+
+            /*User
+                .findOne({ id:req.body._id })
+                .populate('author') //This populates the author id with actual author information!
+                .exec(function (err, story) {
+                    if (err) return handleError(err);
+                    console.log('The author is %s', story.author.name);
+
+                });*/
 /*
   User.findByIdAndUpdate(req.params.id, {username: req.params.username}, function (err, user) {
         if (err) return next(err);

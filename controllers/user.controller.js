@@ -5,7 +5,8 @@ exports.user_create = function (req, res, next) {
     let user = new User(
         {
             username: req.body.username,
-            email: req.body.email
+            email: req.body.email,
+            ban: req.body.ban
         }
     );
     user.save(function (err) {
