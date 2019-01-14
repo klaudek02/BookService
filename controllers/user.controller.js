@@ -52,7 +52,7 @@ exports.user_updateObservedUser = function (req, res, next) {
 };
 
 exports.user_banUser = function (req, res, next) {
-    if(req.user['UserType'] == "ADMIN") {
+   /* if(req.user['UserType'] == "ADMIN") {
         User.findByIdAndUpdate(req.body.id, {ban: req.body.ban}, function (err, user) {
             if (err) return next(err);
             res.send('Correctly banned user.');
@@ -62,4 +62,20 @@ exports.user_banUser = function (req, res, next) {
     {
         res.send('You cant do that, only ADMIN');
     }
-};
+*/
+    User
+        .findOne({ _id:req.body._id })
+        .exec(function (err, user) {
+            if (err) return new Error('something bad happened');
+            if(user.userType==="ADMIN"){
+                User.findByIdAndUpdate(req.body.id, {ban : 'true'}, function (err, user) {
+                    if (err) return next(err);
+                    res.send('User banned.');
+                } )
+
+            }
+            else{
+                res.send("You are not Admin.")
+            }}
+        )};
+
